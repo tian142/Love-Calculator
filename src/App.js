@@ -65,27 +65,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// onFormSubmit = async (event) => {
-//   event.preventDefault();
-//   axios({
-//     method: 'GET',
-//     url: 'https://love-calculator.p.rapidapi.com/getPercentage',
-//     headers: {
-//       'content-type': 'application/octet-stream',
-//       'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
-//       'x-rapidapi-key': 'b99a83853fmsh8d97f5e798e6920p1fd23ejsnc7871215aa2a',
-//       useQueryString: true,
-//     },
-//     params: {
-//       fname: 'John',
-//       sname: 'Alice',
-//     },
-//   })
-//     .then((response) => {
-//       console.log(response);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
