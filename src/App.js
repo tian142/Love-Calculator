@@ -6,26 +6,42 @@ import axios from 'axios';
 import './style.css';
 
 class App extends React.Component {
-  state = {
-    name1: '',
-    name2: '',
-    percentage: 0,
-    sentence: '',
-    prediction: '',
-    loading: false,
-  };
+  constructor(props) {
+    super(props);
+    this.hr = React.createRef();
+    this.state = {
+      name1: '',
+      name2: '',
+      percentage: 0,
+      sentence: '',
+      prediction: '',
+      loading: false,
+    };
+  }
 
   onInputChange1 = (event) => {
     this.setState({ name1: event.target.value });
+    this.setState({ loading: false });
+    this.moveLineBack();
   };
   onInputChange2 = (event) => {
     this.setState({ name2: event.target.value });
+    this.setState({ loading: false });
   };
   onPredictionChange = (event) => {
     this.setState({ prediction: event.target.value });
+    this.setState({ loading: false });
+  };
+
+  moveLine = () => {
+    this.hr.current.classList.add('moveLine');
+  };
+  moveLineBack = () => {
+    this.hr.current.classList.remove('moveLine', 1000);
   };
 
   onFormSubmit = async (event) => {
+    this.setState({ loading: false });
     event.preventDefault();
     await axios({
       method: 'GET',
@@ -59,8 +75,8 @@ class App extends React.Component {
         <div className="left-side">
           <div id="title">Love Calculator</div>
           <div id="instruction">Start by entering two names</div>
-          <hr />
-          <form onSubmit={this.onFormSubmit}>
+          <hr ref={this.hr} />
+          <form onSubmit={this.onFormSubmit} ref={this.formRef}>
             <input
               className="input"
               type="text"
@@ -82,7 +98,7 @@ class App extends React.Component {
               onChange={this.onPredictionChange}
               placeholder="Prediction (1-100)"
             />
-            <button class="submit" type="submit">
+            <button className="submit" type="submit" onClick={this.moveLine}>
               Submit
             </button>
           </form>
@@ -98,7 +114,7 @@ class App extends React.Component {
               name2={this.state.name2}
             />
           ) : (
-            <Spinner animation="border" />
+            <Spinner animation="grow" variant="danger" />
           )}
         </div>
       </div>

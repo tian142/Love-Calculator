@@ -22,6 +22,7 @@ body {
   /* background-color: rgb(250, 203, 250); */
 }
 .right-side-main {
+  padding-right: 70px;
   display: flex;
   /* background-color: turquoise; */
   justify-content: center;
@@ -32,7 +33,7 @@ body {
   font-size: 1.75rem;
 }
 .result {
-  margin: 30px 45px;
+  margin: 25px 45px;
   height: 80px;
   /* background-color: tomato; */
 }
@@ -77,6 +78,7 @@ input::placeholder {
   outline: none !important;
   background-color: white;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+  padding-bottom: 5px;
 }
 
 .submit:hover {
@@ -87,31 +89,54 @@ input::placeholder {
     background-position: 0%;
   }
   100% {
-    background-position: 400%;
+    background-position: 300%;
   }
 }
 .submit:before {
   content: '';
   position: absolute;
-  top: -5px;
-  bottom: -5px;
-  right: -5px;
-  left: -5px;
+  top: -1px;
+  bottom: -1px;
+  right: -1px;
+  left: -1px;
   z-index: -1;
   background: linear-gradient(90deg, #03a9f4, #f441a4, #ffeb3b, #03a9f4);
   background-size: 400%;
-  border-radius: 40px;
-  filter: blur(20px);
+  border-radius: 0px;
+  filter: blur(0px);
   opacity: 0;
   transition: 0.5s;
 }
 .submit:hover:before {
-  filter: blur(40px);
-  opacity: 0.75;
+  filter: blur(1px);
+  opacity: 1;
   animation: animate 8s linear infinite;
 }
 
+@keyframes moveLine {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 105%;
+  }
+}
+@keyframes moveLineBack {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 105%;
+  }
+}
+
+.moveLine {
+  animation: moveLine ease-in-out 2s forwards;
+  position: relative;
+}
+
 hr {
+  transition: 2s;
   width: 94.5%;
   margin: 20px 0px 10px;
   border: 0.25px solid black;
@@ -121,6 +146,28 @@ hr {
   display: flex;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 #first-result {
-  margin-top: 200px;
+  margin-top: 230px;
+  animation: fadeIn 2s;
+}
+
+#second-result {
+  animation: fadeIn 4s;
+}
+
+#third-result {
+  animation: fadeIn 6s;
+}
+
+#fourth-result {
+  animation: fadeIn 7s;
 }

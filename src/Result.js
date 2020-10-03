@@ -27,9 +27,15 @@ const Result = ({ percent, sentence, prediction, name1, name2 }) => {
       <div className="result" id="first-result">
         You Predicted: {prediction}%
       </div>
-      <div className="result">{aiScore()}</div>
-      <div className="result">{judgePrediction()}</div>
-      <div className="result">The Love AI says: "{sentence}."</div>
+      <div className="result" id="second-result">
+        {aiScore()}
+      </div>
+      <div className="result" id="third-result">
+        {judgePrediction()}
+      </div>
+      <div className="result" id="fourth-result">
+        The Love AI says: "{sentence}."
+      </div>
     </div>
   );
 };
