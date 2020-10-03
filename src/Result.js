@@ -3,38 +3,47 @@ import './style.css';
 
 const Result = ({ percent, sentence, prediction, name1, name2 }) => {
   const judgePrediction = () => {
+    console.log(typeof prediction, typeof percent);
+    let strPrediction = parseInt(prediction);
+    let strPercent = parseInt(percent);
     if (!sentence) {
       return;
-    } else if (prediction > percent && prediction - percent < 25) {
-      return 'Not as compatable as you have hoped, but close!';
-    } else if (prediction > percent && prediction - percent > 25) {
+    } else if (strPrediction > strPercent && strPrediction - strPercent < 25) {
+      return 'Close! But not as compatable as you had hoped.';
+    } else if (strPrediction > strPercent && strPrediction - strPercent > 25) {
       return 'You had high hopes, but reality can be cruel sometimes.';
-    } else if (prediction < percent && percent - prediction > 25) {
+    } else if (strPrediction < strPercent && strPercent - prediction > 25) {
       return 'You are in for a plesant suprise!';
-    } else if (prediction < percent && percent - prediction < 25) {
-      return 'Pretty close! You both are more compatable than you think!';
-    } else if (prediction === percent) {
+    } else if (strPrediction < strPercent && strPercent - prediction < 25) {
+      return 'Close! You both are more compatable than you thought!';
+    } else if (strPrediction === strPercent) {
       return 'Nice Guess, right on the target!';
     }
   };
 
   const aiScore = () => {
-    return `${name1} and ${name2}'s Match Score is: ${percent}%`;
+    return (
+      <>
+        {name1} and {name2}'s Match Score is: <strong>{percent}%</strong>
+      </>
+    );
   };
 
   return (
     <div className="right-side">
       <div className="result" id="first-result">
-        You Predicted: {prediction}%
+        {name1 && name2
+          ? `You Predicted: ${prediction}%`
+          : 'Please enter names'}
       </div>
       <div className="result" id="second-result">
-        {aiScore()}
-      </div>
-      <div className="result" id="third-result">
         {judgePrediction()}
       </div>
+      <div className="result" id="third-result">
+        {name1 && name2 ? aiScore() : ''}
+      </div>
       <div className="result" id="fourth-result">
-        The Love AI says: "{sentence}."
+        {name1 && name2 ? `The Love AI says: "${sentence}."` : ''}
       </div>
     </div>
   );

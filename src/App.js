@@ -16,9 +16,12 @@ class App extends React.Component {
       sentence: '',
       prediction: '',
       loading: false,
+      counter: 0,
     };
   }
-
+  componentDidMount = () => {
+    this.hr.current.classList.add('moveLineBack');
+  };
   onInputChange1 = (event) => {
     this.setState({ name1: event.target.value });
     this.setState({ loading: false });
@@ -27,17 +30,21 @@ class App extends React.Component {
   onInputChange2 = (event) => {
     this.setState({ name2: event.target.value });
     this.setState({ loading: false });
+    this.moveLineBack();
   };
   onPredictionChange = (event) => {
     this.setState({ prediction: event.target.value });
     this.setState({ loading: false });
+    this.moveLineBack();
   };
 
   moveLine = () => {
+    this.hr.current.classList.remove('moveLineBack');
     this.hr.current.classList.add('moveLine');
   };
   moveLineBack = () => {
-    this.hr.current.classList.remove('moveLine', 1000);
+    this.hr.current.classList.add('moveLineBack');
+    this.hr.current.classList.remove('moveLine');
   };
 
   onFormSubmit = async (event) => {

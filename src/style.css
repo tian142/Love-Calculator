@@ -1,3 +1,6 @@
+/* the button raidant is taken from "https://www.youtube.com/watch?v=KFIlBYE7KQ4"
+the rest is original */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -22,6 +25,7 @@ body {
   /* background-color: rgb(250, 203, 250); */
 }
 .right-side-main {
+  padding-top: 55px;
   padding-right: 70px;
   display: flex;
   /* background-color: turquoise; */
@@ -38,9 +42,6 @@ body {
   /* background-color: tomato; */
 }
 
-#title {
-  font-size: 3.5rem;
-}
 #instruction {
   font-size: 1.75rem;
 }
@@ -78,7 +79,7 @@ input::placeholder {
   outline: none !important;
   background-color: white;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
-  padding-bottom: 5px;
+  padding-bottom: 3px;
 }
 
 .submit:hover {
@@ -123,15 +124,20 @@ input::placeholder {
 }
 @keyframes moveLineBack {
   0% {
-    right: 0px;
+    right: -105%;
   }
   100% {
-    right: 105%;
+    right: 0%;
   }
 }
 
 .moveLine {
-  animation: moveLine ease-in-out 2s forwards;
+  animation: moveLine 2s forwards;
+  position: relative;
+}
+.moveLineBack {
+  animation-duration: alternate;
+  animation: moveLineBack 2s forwards;
   position: relative;
 }
 
@@ -155,8 +161,17 @@ hr {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 #first-result {
-  margin-top: 230px;
+  margin-top: 180px;
   animation: fadeIn 2s;
 }
 
@@ -170,4 +185,19 @@ hr {
 
 #fourth-result {
   animation: fadeIn 7s;
+}
+
+@keyframes moveHeader {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+#title {
+  position: relative;
+  font-size: 3.5rem;
+  animation: moveHeader 2s forwards;
 }
